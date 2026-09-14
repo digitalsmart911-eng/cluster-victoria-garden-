@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pemilik Rumah - RT/RW</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+.header {
+    background: #123b2a;
+    color: white;
+    padding: 28px 30px;
+}
+
+.header h1 {
+    font-size: 26px;
+}
+
+.header p {
+    margin-top: 7px;
+    opacity: .8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #176b48;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.title h2 {
+    color: #123b2a;
+    margin-bottom: 7px;
+}
+
+.title p {
+    color: #777;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.summary-card span {
+    color: #777;
+    font-size: 12px;
+}
+
+.summary-card strong {
+    display: block;
+    color: #176b48;
+    font-size: 25px;
+    margin-top: 7px;
+}
+
+.table-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 850px;
+}
+
+th {
+    background: #e7f5ec;
+    color: #123b2a;
+    text-align: left;
+    padding: 13px;
+    font-size: 12px;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.status {
+    background: #e7f5ec;
+    color: #176b48;
+    padding: 5px 9px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.button {
+    background: #176b48;
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media(max-width:700px) {
+    .container {
+        padding: 15px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🏠 Pemilik Rumah</h1>
+    <p>Data pemilik rumah lingkungan RT / RW</p>
+</div>
+
+<div class="container">
+
+<a href="warga.html" class="back">
+    ← Kembali ke Data Warga
+</a>
+
+<div class="title">
+    <h2>Daftar Pemilik Rumah</h2>
+    <p>Data contoh pemilik rumah di lingkungan RW 017.</p>
+</div>
+
+<div class="summary">
+
+    <div class="summary-card">
+        <span>Total Pemilik</span>
+        <strong>86</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>RT 01</span>
+        <strong>24</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>RT 02 - 04</span>
+        <strong>62</strong>
+    </div>
+
+</div>
+
+<div class="table-card">
+
+<table>
+
+<thead>
+<tr>
+    <th>No</th>
+    <th>Nama Pemilik</th>
+    <th>NIK</th>
+    <th>No Rumah</th>
+    <th>RT</th>
+    <th>No HP</th>
+    <th>Status</th>
+    <th>Aksi</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+    <td>1</td>
+    <td>Budi Santoso</td>
+    <td>3273********001</td>
+    <td>A-01</td>
+    <td>RT 01</td>
+    <td>0812-1111-2222</td>
+    <td><span class="status">PEMILIK</span></td>
+    <td>
+        <button class="button"
+        onclick="detail('Budi Santoso','A-01','RT 01')">
+        Detail
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>2</td>
+    <td>Siti Rahma</td>
+    <td>3273********002</td>
+    <td>A-05</td>
+    <td>RT 01</td>
+    <td>0813-3333-4444</td>
+    <td><span class="status">PEMILIK</span></td>
+    <td>
+        <button class="button"
+        onclick="detail('Siti Rahma','A-05','RT 01')">
+        Detail
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>3</td>
+    <td>Agus Setiawan</td>
+    <td>3273********003</td>
+    <td>B-10</td>
+    <td>RT 02</td>
+    <td>0814-5555-6666</td>
+    <td><span class="status">PEMILIK</span></td>
+    <td>
+        <button class="button"
+        onclick="detail('Agus Setiawan','B-10','RT 02')">
+        Detail
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>4</td>
+    <td>Dewi Lestari</td>
+    <td>3273********004</td>
+    <td>C-03</td>
+    <td>RT 03</td>
+    <td>0815-7777-8888</td>
+    <td><span class="status">PEMILIK</span></td>
+    <td>
+        <button class="button"
+        onclick="detail('Dewi Lestari','C-03','RT 03')">
+        Detail
+        </button>
+    </td>
+</tr>
+
+<tr>
+    <td>5</td>
+    <td>Rudi Hartono</td>
+    <td>3273********005</td>
+    <td>D-08</td>
+    <td>RT 04</td>
+    <td>0816-9999-0000</td>
+    <td><span class="status">PEMILIK</span></td>
+    <td>
+        <button class="button"
+        onclick="detail('Rudi Hartono','D-08','RT 04')">
+        Detail
+        </button>
+    </td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+function detail(nama, rumah, rt) {
+
+    alert(
+        "DETAIL PEMILIK\n\n" +
+        "Nama: " + nama + "\n" +
+        "Nomor Rumah: " + rumah + "\n" +
+        "RT: " + rt
+    );
+
+}
+
+</script>
+
+</body>
+</html>
