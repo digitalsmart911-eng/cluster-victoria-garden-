@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal RT / RW</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
+body{background:#f4f6f8;color:#1f2937}
+.sidebar{position:fixed;left:0;top:0;width:250px;height:100vh;background:#123b2a;color:white;padding:25px 15px}
+.logo{text-align:center;margin-bottom:30px}.logo .icon{font-size:42px}.logo h2{margin-top:8px;font-size:20px}.logo p{font-size:12px;opacity:.7;margin-top:4px}
+.menu{list-style:none}.menu li{margin-bottom:6px}.menu a{display:block;color:#d8e7df;text-decoration:none;padding:12px 15px;border-radius:8px;font-size:14px}.menu a:hover,.menu a.active{background:#1e5b42;color:white}
+.main{margin-left:250px;min-height:100vh}.header{height:70px;background:white;display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid #e5e7eb}.header h3{font-size:18px}
+.user{display:flex;align-items:center;gap:10px;font-size:14px}.avatar{width:38px;height:38px;border-radius:50%;background:#dceee5;display:flex;align-items:center;justify-content:center}
+.content{padding:30px}.welcome{margin-bottom:25px}.welcome h1{font-size:26px;margin-bottom:6px}.welcome p{color:#6b7280}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:25px}.card{background:white;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}.stat-card{display:flex;align-items:center;gap:15px}.stat-icon{width:50px;height:50px;border-radius:10px;background:#e8f3ed;display:flex;align-items:center;justify-content:center;font-size:25px}.stat-card h2{margin-top:4px;font-size:23px}.stat-card p{font-size:12px;color:#6b7280}
+.grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}.card-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.card-title h3{font-size:17px}.card-title a{font-size:12px;color:#176b48;text-decoration:none}
+.info{padding:14px 0;border-bottom:1px solid #eee}.info:last-child{border-bottom:none}.info h4{margin-bottom:5px;font-size:14px}.info p{font-size:12px;color:#6b7280}.badge{display:inline-block;background:#e7f5ec;color:#176b48;padding:4px 8px;border-radius:20px;font-size:10px;margin-bottom:7px}
+.activity{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #eee}.date{min-width:48px;height:48px;background:#e7f5ec;border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#176b48}.date strong{font-size:17px}.date span{font-size:9px}.activity h4{font-size:13px;margin-bottom:4px}.activity p{color:#6b7280;font-size:11px}
+.cctv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.camera{height:130px;background:#18201c;border-radius:8px;position:relative;overflow:hidden;color:white}.camera-screen{height:100%;display:flex;justify-content:center;align-items:center;font-size:35px;opacity:.4}.camera-name{position:absolute;bottom:8px;left:10px;font-size:11px}.online{position:absolute;top:8px;right:8px;background:#27ae60;padding:4px 7px;border-radius:10px;font-size:9px}
+.balance{text-align:center;padding:20px 0}.balance p{color:#6b7280;font-size:12px}.balance h2{font-size:28px;color:#176b48;margin:8px 0}.cash-row{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid #eee;font-size:12px}.income{color:#159447}.expense{color:#d64545}
+@media(max-width:900px){.sidebar{width:210px}.main{margin-left:210px}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.sidebar{position:relative;width:100%;height:auto}.main{margin-left:0}.header{padding:0 15px}.content{padding:15px}.stats,.grid{grid-template-columns:1fr}.cctv-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+<div class="logo"><div class="icon">🏘️</div><h2>PORTAL RT / RW</h2><p>Informasi & Pelayanan Warga</p></div>
+<ul class="menu">
+<li><a href="#" class="active">🏠 &nbsp; Dashboard</a></li>
+<li><a href="#">📢 &nbsp; Informasi RT/RW</a></li>
+<li><a href="#">📹 &nbsp; CCTV</a></li>
+<li><a href="#">👥 &nbsp; Data Warga</a></li>
+<li><a href="#">🏠 &nbsp; Pemilik Rumah</a></li>
+<li><a href="#">📄 &nbsp; Kontrak</a></li>
+<li><a href="#">📁 &nbsp; Dokumen</a></li>
+<li><a href="#">💰 &nbsp; Kas RW</a></li>
+<li><a href="#">📅 &nbsp; Kegiatan RW</a></li>
+<li><a href="#">👤 &nbsp; Pengguna</a></li>
+<li><a href="#">⚙️ &nbsp; Pengaturan</a></li>
+</ul>
+</aside>
+<main class="main">
+<header class="header"><h3>Dashboard</h3><div class="user"><span>Admin RW</span><div class="avatar">👤</div></div></header>
+<section class="content">
+<div class="welcome"><h1>Selamat Datang 👋</h1><p>Portal informasi dan pelayanan warga RT / RW</p></div>
+<div class="stats">
+<div class="card stat-card"><div class="stat-icon">👥</div><div><p>Total Warga</p><h2>245</h2></div></div>
+<div class="card stat-card"><div class="stat-icon">🏠</div><div><p>Total Rumah</p><h2>86</h2></div></div>
+<div class="card stat-card"><div class="stat-icon">📹</div><div><p>CCTV Online</p><h2>12</h2></div></div>
+<div class="card stat-card"><div class="stat-icon">💰</div><div><p>Saldo Kas RW</p><h2>25,7 Jt</h2></div></div>
+</div>
+<div class="grid">
+<div>
+<div class="card"><div class="card-title"><h3>📢 Informasi Terbaru</h3><a href="#">Lihat Semua</a></div>
+<div class="info"><span class="badge">PENGUMUMAN RW</span><h4>Kerja Bakti Lingkungan</h4><p>Akan dilaksanakan kerja bakti bersama seluruh warga pada hari Minggu pukul 07.00 WIB.</p></div>
+<div class="info"><span class="badge">INFORMASI RT</span><h4>Rapat Pengurus RT</h4><p>Rapat pengurus RT akan dilaksanakan minggu depan di Balai RW.</p></div>
+<div class="info"><span class="badge">KEAMANAN</span><h4>Peningkatan Pengamanan Lingkungan</h4><p>Mohon warga memastikan pintu dan kendaraan terkunci saat meninggalkan rumah.</p></div>
+</div><br>
+<div class="card"><div class="card-title"><h3>📹 CCTV Lingkungan</h3><a href="#">Buka CCTV</a></div>
+<div class="cctv-grid">
+<div class="camera"><div class="camera-screen">📹</div><span class="online">● ONLINE</span><div class="camera-name">Gerbang Utama</div></div>
+<div class="camera"><div class="camera-screen">📹</div><span class="online">● ONLINE</span><div class="camera-name">Jalan Utama</div></div>
+<div class="camera"><div class="camera-screen">📹</div><span class="online">● ONLINE</span><div class="camera-name">Pos Security</div></div>
+<div class="camera"><div class="camera-screen">📹</div><span class="online">● ONLINE</span><div class="camera-name">Area Parkir</div></div>
+</div></div>
+</div>
+<div>
+<div class="card"><div class="card-title"><h3>💰 Kas RW</h3><a href="#">Detail</a></div><div class="balance"><p>Saldo Saat Ini</p><h2>Rp 25.750.000</h2></div>
+<div class="cash-row"><span>Pemasukan</span><strong class="income">+ Rp 45.000.000</strong></div>
+<div class="cash-row"><span>Pengeluaran</span><strong class="expense">- Rp 19.250.000</strong></div></div><br>
+<div class="card"><div class="card-title"><h3>📅 Kegiatan Terdekat</h3><a href="#">Semua</a></div>
+<div class="activity"><div class="date"><strong>20</strong><span>SEP</span></div><div><h4>Kerja Bakti</h4><p>07:00 WIB • Lapangan RW</p></div></div>
+<div class="activity"><div class="date"><strong>25</strong><span>SEP</span></div><div><h4>Rapat Pengurus RW</h4><p>19:30 WIB • Balai RW</p></div></div>
+<div class="activity"><div class="date"><strong>02</strong><span>OKT</span></div><div><h4>Kegiatan Warga</h4><p>08:00 WIB • Lapangan RW</p></div></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body>
+</html>
