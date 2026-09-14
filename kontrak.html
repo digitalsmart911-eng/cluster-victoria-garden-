@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Warga Kontrak - RT/RW</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+.header {
+    background: #123b2a;
+    color: white;
+    padding: 28px 30px;
+}
+
+.header h1 {
+    font-size: 26px;
+}
+
+.header p {
+    margin-top: 7px;
+    opacity: .8;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 30px;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #176b48;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.title {
+    margin-bottom: 25px;
+}
+
+.title h2 {
+    color: #123b2a;
+    margin-bottom: 7px;
+}
+
+.title p {
+    color: #777;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+.summary-card span {
+    color: #777;
+    font-size: 12px;
+}
+
+.summary-card strong {
+    display: block;
+    color: #176b48;
+    font-size: 25px;
+    margin-top: 7px;
+}
+
+.table-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1050px;
+}
+
+th {
+    background: #e7f5ec;
+    color: #123b2a;
+    text-align: left;
+    padding: 13px;
+    font-size: 12px;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.aktif {
+    background: #e7f5ec;
+    color: #176b48;
+}
+
+.segera {
+    background: #fff3cd;
+    color: #9a6700;
+}
+
+.berakhir {
+    background: #fde8e8;
+    color: #c53030;
+}
+
+.button {
+    background: #176b48;
+    color: white;
+    border: none;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.info {
+    margin-top: 25px;
+    background: #fff8e1;
+    color: #795548;
+    padding: 18px;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+@media(max-width:700px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+    <h1>🔑 Warga Kontrak</h1>
+
+    <p>
+        Data penghuni rumah kontrakan lingkungan RT / RW
+    </p>
+
+</div>
+
+
+<div class="container">
+
+<a href="warga.html" class="back">
+    ← Kembali ke Data Warga
+</a>
+
+
+<div class="title">
+
+    <h2>Daftar Warga Kontrak</h2>
+
+    <p>
+        Data contoh penghuni rumah kontrakan di lingkungan RW 017.
+    </p>
+
+</div>
+
+
+<div class="summary">
+
+    <div class="summary-card">
+        <span>Total Warga Kontrak</span>
+        <strong>24</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Kontrak Aktif</span>
+        <strong>20</strong>
+    </div>
+
+    <div class="summary-card">
+        <span>Segera Berakhir</span>
+        <strong>4</strong>
+    </div>
+
+</div>
+
+
+<div class="table-card">
+
+<table>
+
+<thead>
+
+<tr>
+    <th>No</th>
+    <th>Nama Penghuni</th>
+    <th>No Rumah</th>
+    <th>RT</th>
+    <th>Nama Pemilik</th>
+    <th>No HP</th>
+    <th>Mulai Kontrak</th>
+    <th>Berakhir</th>
+    <th>Status</th>
+    <th>Aksi</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+    <td>1</td>
+
+    <td>
+        Andi Wijaya
+    </td>
+
+    <td>
+        A-02
+    </td>
+
+    <td>
+        RT 01
+    </td>
+
+    <td>
+        Budi Santoso
+    </td>
+
+    <td>
+        0813-3333-4444
+    </td>
+
+    <td>
+        01/01/2026
+    </td>
+
+    <td>
+        31/12/2026
+    </td>
+
+    <td>
+        <span class="status aktif">
+            ● AKTIF
+        </span>
+    </td>
+
+    <td>
+        <button
+        class="button"
+        onclick="detail('Andi Wijaya','A-02','Budi Santoso','31/12/2026')">
+        Detail
+        </button>
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>2</td>
+
+    <td>
+        Rudi Hartono
+    </td>
+
+    <td>
+        B-06
+    </td>
+
+    <td>
+        RT 02
+    </td>
+
+    <td>
+        Siti Rahma
+    </td>
+
+    <td>
+        0815-7777-8888
+    </td>
+
+    <td>
+        01/03/2026
+    </td>
+
+    <td>
+        28/02/2027
+    </td>
+
+    <td>
+        <span class="status aktif">
+            ● AKTIF
+        </span>
+    </td>
+
+    <td>
+        <button
+        class="button"
+        onclick="detail('Rudi Hartono','B-06','Siti Rahma','28/02/2027')">
+        Detail
+        </button>
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>3</td>
+
+    <td>
+        Fajar Pratama
+    </td>
+
+    <td>
+        C-04
+    </td>
+
+    <td>
+        RT 03
+    </td>
+
+    <td>
+        Agus Setiawan
+    </td>
+
+    <td>
+        0817-2222-3333
+    </td>
+
+    <td>
+        01/05/2026
+    </td>
+
+    <td>
+        30/09/2026
+    </td>
+
+    <td>
+        <span class="status segera">
+            ● SEGERA BERAKHIR
+        </span>
+    </td>
+
+    <td>
+        <button
+        class="button"
+        onclick="detail('Fajar Pratama','C-04','Agus Setiawan','30/09/2026')">
+        Detail
+        </button>
+    </td>
+
+</tr>
+
+
+<tr>
+
+    <td>4</td>
+
+    <td>
+        Dimas Saputra
+    </td>
+
+    <td>
+        D-08
+    </td>
+
+    <td>
+        RT 04
+    </td>
+
+    <td>
+        Dewi Lestari
+    </td>
+
+    <td>
+        0818-4444-5555
+    </td>
+
+    <td>
+        01/08/2025
+    </td>
+
+    <td>
+        31/08/2026
+    </td>
+
+    <td>
+        <span class="status berakhir">
+            ● BERAKHIR
+        </span>
+    </td>
+
+    <td>
+        <button
+        class="button"
+        onclick="detail('Dimas Saputra','D-08','Dewi Lestari','31/08/2026')">
+        Detail
+        </button>
+    </td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="info">
+
+    ⚠️ <strong>Perhatian:</strong>
+
+    Data kontrak perlu diperbarui apabila terjadi
+    perpanjangan kontrak, pergantian penghuni,
+    atau penghuni keluar dari lingkungan.
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function detail(nama, rumah, pemilik, berakhir) {
+
+    alert(
+        "DETAIL WARGA KONTRAK\n\n" +
+        "Nama Penghuni: " + nama + "\n" +
+        "Nomor Rumah: " + rumah + "\n" +
+        "Pemilik Rumah: " + pemilik + "\n" +
+        "Kontrak Berakhir: " + berakhir
+    );
+
+}
+
+</script>
+
+</body>
+</html>
