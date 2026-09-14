@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAS RT / RW</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #173937;
+}
+
+.header {
+    background: #123b2a;
+    color: white;
+    padding: 25px 30px;
+}
+
+.header h1 {
+    font-size: 26px;
+}
+
+.header p {
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+.container {
+    padding: 30px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #176b48;
+    font-weight: bold;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.kas-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.kas-card {
+    background: white;
+    border-radius: 14px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.kas-card:hover {
+    transform: translateY(-3px);
+}
+
+.icon {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.kas-card h2 {
+    margin-bottom: 10px;
+}
+
+.saldo-label {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.saldo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #176b48;
+    margin-top: 5px;
+}
+
+.detail {
+    display: none;
+    margin-top: 30px;
+}
+
+.detail.active {
+    display: block;
+}
+
+.detail-box {
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    border: none;
+    background: #eee;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.summary-card {
+    padding: 18px;
+    border-radius: 10px;
+    background: #f4f6f8;
+}
+
+.summary-card p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.summary-card h3 {
+    margin-top: 8px;
+}
+
+.masuk {
+    color: #16834e;
+}
+
+.keluar {
+    color: #c0392b;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+th {
+    background: #f4f6f8;
+}
+
+.badge {
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.badge-masuk {
+    background: #dff5e8;
+    color: #16834e;
+}
+
+.badge-keluar {
+    background: #fde3df;
+    color: #c0392b;
+}
+
+@media(max-width: 700px) {
+    .container {
+        padding: 15px;
+    }
+
+    .kas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>💰 KAS RT / RW</h1>
+    <p>Pengelolaan keuangan lingkungan RT dan RW</p>
+</div>
+
+<div class="container">
+
+<a href="index.html" class="back">← Kembali ke Dashboard</a>
+
+<div class="title">
+    <h2>Pilih Kas</h2>
+    <p>Pilih RT atau RW untuk melihat rincian keuangan.</p>
+</div>
+
+<div class="kas-grid">
+
+    <div class="kas-card" onclick="bukaKas('RT 01')">
+        <div class="icon">🏠</div>
+        <h2>RT 01</h2>
+        <div class="saldo-label">Saldo Kas</div>
+        <div class="saldo">Rp 3.250.000</div>
+    </div>
+
+    <div class="kas-card" onclick="bukaKas('RT 02')">
+        <div class="icon">🏠</div>
+        <h2>RT 02</h2>
+        <div class="saldo-label">Saldo Kas</div>
+        <div class="saldo">Rp 2.875.000</div>
+    </div>
+
+    <div class="kas-card" onclick="bukaKas('RW')">
+        <div class="icon">🏢</div>
+        <h2>RW</h2>
+        <div class="saldo-label">Saldo Kas</div>
+        <div class="saldo">Rp 8.500.000</div>
+    </div>
+
+</div>
+
+
+<div id="detail" class="detail">
+
+    <div class="detail-box">
+
+        <div class="detail-header">
+            <div>
+                <h2 id="judulKas">Kas RT</h2>
+                <p>Rincian uang masuk dan uang keluar</p>
+            </div>
+
+            <button class="close" onclick="tutupKas()">Tutup</button>
+        </div>
+
+
+        <div class="summary">
+
+            <div class="summary-card">
+                <p>Total Uang Masuk</p>
+                <h3 class="masuk" id="totalMasuk">
+                    Rp 0
+                </h3>
+            </div>
+
+            <div class="summary-card">
+                <p>Total Uang Keluar</p>
+                <h3 class="keluar" id="totalKeluar">
+                    Rp 0
+                </h3>
+            </div>
+
+            <div class="summary-card">
+                <p>Saldo</p>
+                <h3 id="totalSaldo">
+                    Rp 0
+                </h3>
+            </div>
+
+        </div>
+
+
+        <h3 style="margin-bottom:15px;">
+            Rincian Transaksi
+        </h3>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
+                    <th>Jenis</th>
+                    <th>Jumlah</th>
+                </tr>
+            </thead>
+
+            <tbody id="transaksi">
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const dataKas = {
+
+    "RT 01": [
+        {
+            tanggal: "01-09-2026",
+            keterangan: "Iuran warga",
+            jenis: "masuk",
+            jumlah: 1500000
+        },
+        {
+            tanggal: "05-09-2026",
+            keterangan: "Pembelian lampu jalan",
+            jenis: "keluar",
+            jumlah: 350000
+        },
+        {
+            tanggal: "10-09-2026",
+            keterangan: "Iuran warga",
+            jenis: "masuk",
+            jumlah: 1200000
+        }
+    ],
+
+    "RT 02": [
+        {
+            tanggal: "02-09-2026",
+            keterangan: "Iuran warga",
+            jenis: "masuk",
+            jumlah: 1250000
+        },
+        {
+            tanggal: "06-09-2026",
+            keterangan: "Kegiatan kebersihan",
+            jenis: "keluar",
+            jumlah: 275000
+        },
+        {
+            tanggal: "11-09-2026",
+            keterangan: "Iuran warga",
+            jenis: "masuk",
+            jumlah: 900000
+        }
+    ],
+
+    "RW": [
+        {
+            tanggal: "01-09-2026",
+            keterangan: "Iuran RT",
+            jenis: "masuk",
+            jumlah: 5000000
+        },
+        {
+            tanggal: "04-09-2026",
+            keterangan: "Perbaikan fasilitas umum",
+            jenis: "keluar",
+            jumlah: 1500000
+        },
+        {
+            tanggal: "10-09-2026",
+            keterangan: "Donasi kegiatan RW",
+            jenis: "masuk",
+            jumlah: 3000000
+        }
+    ]
+
+};
+
+
+function formatRupiah(angka) {
+
+    return "Rp " + angka.toLocaleString("id-ID");
+
+}
+
+
+function bukaKas(nama) {
+
+    const detail = document.getElementById("detail");
+
+    document.getElementById("judulKas").innerText =
+        "Kas " + nama;
+
+    const transaksi =
+        document.getElementById("transaksi");
+
+    transaksi.innerHTML = "";
+
+    let totalMasuk = 0;
+    let totalKeluar = 0;
+
+    dataKas[nama].forEach(item => {
+
+        if(item.jenis === "masuk") {
+            totalMasuk += item.jumlah;
+        } else {
+            totalKeluar += item.jumlah;
+        }
+
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${item.tanggal}</td>
+            <td>${item.keterangan}</td>
+            <td>
+                ${
+                    item.jenis === "masuk"
+                    ? '<span class="badge badge-masuk">Uang Masuk</span>'
+                    : '<span class="badge badge-keluar">Uang Keluar</span>'
+                }
+            </td>
+            <td>${formatRupiah(item.jumlah)}</td>
+        `;
+
+        transaksi.appendChild(tr);
+
+    });
+
+    const saldo = totalMasuk - totalKeluar;
+
+    document.getElementById("totalMasuk").innerText =
+        formatRupiah(totalMasuk);
+
+    document.getElementById("totalKeluar").innerText =
+        formatRupiah(totalKeluar);
+
+    document.getElementById("totalSaldo").innerText =
+        formatRupiah(saldo);
+
+    detail.classList.add("active");
+
+    detail.scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+function tutupKas() {
+
+    document.getElementById("detail")
+        .classList.remove("active");
+
+}
+
+</script>
+
+</body>
+</html>
