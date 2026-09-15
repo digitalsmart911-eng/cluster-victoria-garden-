@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengaturan - Portal RT/RW</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7f6;
+    color:#1f2937;
+}
+
+.container{
+    display:flex;
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:250px;
+    background:#0d3b2e;
+    color:white;
+    padding:24px 14px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    padding:10px 15px 25px;
+}
+
+.menu{
+    list-style:none;
+}
+
+.menu li{
+    margin-bottom:8px;
+}
+
+.menu a{
+    display:block;
+    color:#e5f1ed;
+    text-decoration:none;
+    padding:16px 18px;
+    border-radius:14px;
+    font-size:16px;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#21664e;
+}
+
+/* CONTENT */
+.content{
+    flex:1;
+    padding:35px;
+}
+
+.header{
+    margin-bottom:25px;
+}
+
+.header h1{
+    color:#164e3b;
+    font-size:30px;
+}
+
+.header p{
+    color:#6b7280;
+    margin-top:7px;
+}
+
+/* GRID */
+.settings-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.setting-card{
+    background:white;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 3px 12px rgba(0,0,0,.06);
+}
+
+.setting-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.setting-icon{
+    font-size:28px;
+}
+
+.setting-title h2{
+    color:#164e3b;
+    font-size:20px;
+}
+
+.setting-title p{
+    color:#6b7280;
+    font-size:13px;
+    margin-top:4px;
+}
+
+.form-group{
+    margin-bottom:16px;
+}
+
+.form-group label{
+    display:block;
+    font-weight:bold;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.form-group input,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:9px;
+    font-size:15px;
+}
+
+.switch-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.switch-row:last-child{
+    border-bottom:none;
+}
+
+.switch-info strong{
+    display:block;
+}
+
+.switch-info span{
+    color:#6b7280;
+    font-size:13px;
+}
+
+.switch{
+    position:relative;
+    width:46px;
+    height:24px;
+}
+
+.switch input{
+    display:none;
+}
+
+.slider{
+    position:absolute;
+    inset:0;
+    background:#d1d5db;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.slider:before{
+    content:"";
+    position:absolute;
+    width:18px;
+    height:18px;
+    left:3px;
+    top:3px;
+    background:white;
+    border-radius:50%;
+    transition:.2s;
+}
+
+.switch input:checked + .slider{
+    background:#21664e;
+}
+
+.switch input:checked + .slider:before{
+    transform:translateX(22px);
+}
+
+/* BUTTON */
+.save-area{
+    margin-top:25px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    border-radius:10px;
+    padding:13px 22px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.btn-save{
+    background:#21664e;
+    color:white;
+}
+
+.btn-reset{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.btn-logout{
+    background:#b91c1c;
+    color:white;
+    width:100%;
+    margin-top:10px;
+}
+
+.info-box{
+    background:#eef5f2;
+    border-radius:10px;
+    padding:15px;
+    color:#164e3b;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.version{
+    text-align:center;
+    color:#9ca3af;
+    margin-top:25px;
+    font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .settings-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+    .container{
+        display:block;
+    }
+
+    .sidebar{
+        width:100%;
+    }
+
+    .content{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+<div class="logo">
+🏘️ Portal RT/RW
+</div>
+
+<ul class="menu">
+
+<li>
+<a href="index.html">
+🏠 &nbsp; Dashboard
+</a>
+</li>
+
+<li>
+<a href="informasi.html">
+📢 &nbsp; Informasi RT/RW
+</a>
+</li>
+
+<li>
+<a href="cctv.html">
+📹 &nbsp; CCTV
+</a>
+</li>
+
+<li>
+<a href="warga.html">
+👥 &nbsp; Data Warga
+</a>
+</li>
+
+<li>
+<a href="#">
+📁 &nbsp; Dokumen
+</a>
+</li>
+
+<li>
+<a href="kas.html">
+💰 &nbsp; KAS
+</a>
+</li>
+
+<li>
+<a href="pengguna.html">
+👤 &nbsp; Pengguna
+</a>
+</li>
+
+<li>
+<a href="pengaturan.html" class="active">
+⚙️ &nbsp; Pengaturan
+</a>
+</li>
+
+</ul>
+
+</aside>
+
+
+<!-- CONTENT -->
+<main class="content">
+
+<div class="header">
+
+<h1>⚙️ Pengaturan</h1>
+
+<p>
+Pengaturan dan konfigurasi Portal RT/RW
+</p>
+
+</div>
+
+
+<div class="settings-grid">
+
+
+<!-- UMUM -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">🏘️</div>
+
+<div>
+<h2>Pengaturan Umum</h2>
+<p>Identitas aplikasi dan lingkungan</p>
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Nama Aplikasi</label>
+
+<input
+type="text"
+id="appName"
+value="Portal RT/RW">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Nama Cluster / Perumahan</label>
+
+<input
+type="text"
+id="clusterName"
+value="Victoria Garden">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Wilayah</label>
+
+<input
+type="text"
+id="wilayah"
+value="RT/RW Victoria Garden">
+
+</div>
+
+</div>
+
+
+<!-- NOTIFIKASI -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">🔔</div>
+
+<div>
+<h2>Notifikasi</h2>
+<p>Pengaturan pemberitahuan aplikasi</p>
+</div>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Informasi RT/RW</strong>
+<span>Notifikasi informasi terbaru</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Kegiatan RW</strong>
+<span>Pemberitahuan kegiatan</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>KAS</strong>
+<span>Pemberitahuan transaksi KAS</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+</div>
+
+
+<!-- KEAMANAN -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">🔐</div>
+
+<div>
+<h2>Keamanan</h2>
+<p>Pengaturan keamanan akun</p>
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Durasi Sesi Login</label>
+
+<select>
+<option>30 Menit</option>
+<option selected>1 Jam</option>
+<option>4 Jam</option>
+<option>8 Jam</option>
+</select>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Logout Otomatis</strong>
+<span>Keluar otomatis setelah sesi berakhir</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Verifikasi Login</strong>
+<span>Keamanan tambahan saat login</span>
+</div>
+
+<label class="switch">
+<input type="checkbox">
+<span class="slider"></span>
+</label>
+
+</div>
+
+</div>
+
+
+<!-- TAMPILAN -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">🎨</div>
+
+<div>
+<h2>Tampilan</h2>
+<p>Atur tampilan portal</p>
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Tema Aplikasi</label>
+
+<select>
+<option selected>Hijau RT/RW</option>
+<option>Terang</option>
+<option>Gelap</option>
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Ukuran Tampilan</label>
+
+<select>
+<option>Kecil</option>
+<option selected>Normal</option>
+<option>Besar</option>
+</select>
+
+</div>
+
+</div>
+
+
+<!-- CCTV -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">📹</div>
+
+<div>
+<h2>Pengaturan CCTV</h2>
+<p>Konfigurasi sistem pemantauan</p>
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Mode Tampilan CCTV</label>
+
+<select>
+<option selected>Grid</option>
+<option>Single Camera</option>
+<option>Grid + Single</option>
+</select>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Live View</strong>
+<span>Aktifkan tampilan CCTV langsung</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+
+<div class="switch-row">
+
+<div class="switch-info">
+<strong>Auto Refresh</strong>
+<span>Refresh koneksi CCTV otomatis</span>
+</div>
+
+<label class="switch">
+<input type="checkbox" checked>
+<span class="slider"></span>
+</label>
+
+</div>
+
+</div>
+
+
+<!-- DOKUMEN -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">📁</div>
+
+<div>
+<h2>Dokumen</h2>
+<p>Pengaturan file dokumen warga</p>
+</div>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Ukuran Maksimum File</label>
+
+<select>
+<option>5 MB</option>
+<option selected>10 MB</option>
+<option>20 MB</option>
+<option>50 MB</option>
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Format File</label>
+
+<input
+type="text"
+value="PDF, JPG, JPEG, PNG"
+readonly>
+
+</div>
+
+</div>
+
+
+<!-- DATA & BACKUP -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">💾</div>
+
+<div>
+<h2>Data & Backup</h2>
+<p>Pengelolaan dan keamanan data</p>
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+Data aplikasi akan disimpan secara terpusat
+setelah sistem database diaktifkan.
+
+<br><br>
+
+Backup otomatis akan kita hubungkan
+setelah database dan sistem login selesai.
+
+</div>
+
+</div>
+
+
+<!-- INFORMASI -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">ℹ️</div>
+
+<div>
+<h2>Informasi Aplikasi</h2>
+<p>Informasi sistem</p>
+</div>
+
+</div>
+
+
+<div class="info-box">
+
+<strong>Portal RT/RW</strong><br>
+Sistem Informasi Lingkungan<br><br>
+
+Versi Aplikasi: 1.0.0<br>
+Status: Pengembangan
+
+</div>
+
+</div>
+
+
+<!-- LOGOUT -->
+<div class="setting-card">
+
+<div class="setting-title">
+
+<div class="setting-icon">🚪</div>
+
+<div>
+<h2>Keluar Aplikasi</h2>
+<p>Keluar dari sesi pengguna</p>
+</div>
+
+</div>
+
+
+<div class="info-box">
+Gunakan tombol di bawah untuk keluar dari aplikasi.
+</div>
+
+
+<button
+class="btn btn-logout"
+onclick="logout()">
+
+🚪 Logout
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<div class="save-area">
+
+<button
+class="btn btn-reset"
+onclick="resetSetting()">
+
+↩️ Reset
+
+</button>
+
+<button
+class="btn btn-save"
+onclick="saveSetting()">
+
+💾 Simpan Pengaturan
+
+</button>
+
+</div>
+
+
+<div class="version">
+Portal RT/RW • Versi 1.0.0
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+function saveSetting(){
+
+alert(
+"Pengaturan berhasil disimpan.\n\n" +
+"Untuk saat ini pengaturan masih bersifat lokal. " +
+"Pada tahap berikutnya akan kita hubungkan dengan database."
+);
+
+}
+
+function resetSetting(){
+
+if(confirm("Kembalikan pengaturan ke kondisi awal?")){
+
+document.getElementById("appName").value="Portal RT/RW";
+
+document.getElementById("clusterName").value="Victoria Garden";
+
+document.getElementById("wilayah").value="RT/RW Victoria Garden";
+
+alert("Pengaturan telah dikembalikan.");
+
+}
+
+}
+
+function logout(){
+
+if(confirm("Apakah Anda yakin ingin logout?")){
+
+alert(
+"Logout akan kita hubungkan dengan sistem login pada tahap berikutnya."
+);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
