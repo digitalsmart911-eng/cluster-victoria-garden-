@@ -75,5 +75,20 @@ body{background:#f4f6f8;color:#1f2937}
 </div>
 </section>
 </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
+<script>
+    async function checkLogin() {
+        const { data: { session } } =
+            await supabaseClient.auth.getSession();
+
+        if (!session) {
+            window.location.href = "login.html";
+        }
+    }
+
+    checkLogin();
+</script>
 </body>
 </html>
