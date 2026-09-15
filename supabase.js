@@ -12,7 +12,7 @@ const supabaseClient = window.supabase.createClient(
 // AUTO LOGOUT SETELAH 30 MENIT TIDAK AKTIF
 // ==========================================
 
-const AUTO_LOGOUT_TIME = 30 * 60 * 1000; // 30 menit
+const AUTO_LOGOUT_TIME = 1 * 60 * 1000; // 1 menit
 
 let autoLogoutTimer = null;
 let userLoggedIn = false;
