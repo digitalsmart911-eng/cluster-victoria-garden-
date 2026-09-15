@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengguna - Portal RT/RW</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7f6;
+    color: #1f2937;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 250px;
+    background: #0d3b2e;
+    color: white;
+    padding: 24px 14px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 10px 15px 25px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 8px;
+}
+
+.menu a {
+    display: block;
+    color: #e5f1ed;
+    text-decoration: none;
+    padding: 16px 18px;
+    border-radius: 14px;
+    font-size: 16px;
+}
+
+.menu a:hover,
+.menu a.active {
+    background: #21664e;
+}
+
+/* CONTENT */
+.content {
+    flex: 1;
+    padding: 35px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    color: #164e3b;
+    font-size: 30px;
+}
+
+.header p {
+    color: #6b7280;
+    margin-top: 7px;
+}
+
+.btn {
+    background: #21664e;
+    color: white;
+    border: none;
+    padding: 13px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.btn:hover {
+    background: #174c3a;
+}
+
+/* SUMMARY */
+.summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.card .icon {
+    font-size: 27px;
+}
+
+.card h3 {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.card .number {
+    color: #164e3b;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* TABLE */
+.table-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.table-header h2 {
+    color: #164e3b;
+}
+
+.search {
+    width: 230px;
+    padding: 11px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #eef5f2;
+    color: #164e3b;
+    text-align: left;
+    padding: 14px;
+}
+
+td {
+    padding: 14px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.role {
+    color: #21664e;
+    font-weight: bold;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.action {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    width: 500px;
+    max-width: 92%;
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.modal-box h2 {
+    color: #164e3b;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 15px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+@media(max-width:900px) {
+    .summary {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px) {
+    .container {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .summary {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header {
+        display: block;
+    }
+
+    .header .btn {
+        margin-top: 15px;
+    }
+
+    .table-card {
+        overflow-x: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+
+<div class="logo">
+🏘️ Portal RT/RW
+</div>
+
+<ul class="menu">
+
+<li><a href="index.html">🏠 &nbsp; Dashboard</a></li>
+
+<li><a href="informasi.html">📢 &nbsp; Informasi RT/RW</a></li>
+
+<li><a href="cctv.html">📹 &nbsp; CCTV</a></li>
+
+<li><a href="warga.html">👥 &nbsp; Data Warga</a></li>
+
+<li><a href="#">📁 &nbsp; Dokumen</a></li>
+
+<li><a href="kas.html">💰 &nbsp; KAS</a></li>
+
+<li><a href="pengguna.html" class="active">👤 &nbsp; Pengguna</a></li>
+
+<li><a href="#">⚙️ &nbsp; Pengaturan</a></li>
+
+</ul>
+
+</aside>
+
+
+<main class="content">
+
+<div class="header">
+
+<div>
+<h1>👤 Pengguna</h1>
+<p>Kelola akun dan hak akses pengguna Portal RT/RW</p>
+</div>
+
+<button class="btn" onclick="openModal()">
+➕ Tambah Pengguna
+</button>
+
+</div>
+
+
+<div class="summary">
+
+<div class="card">
+<div class="icon">👥</div>
+<h3>Total Pengguna</h3>
+<div class="number">4</div>
+</div>
+
+<div class="card">
+<div class="icon">🟢</div>
+<h3>Pengguna Aktif</h3>
+<div class="number">4</div>
+</div>
+
+<div class="card">
+<div class="icon">🏠</div>
+<h3>Pengurus RT</h3>
+<div class="number">2</div>
+</div>
+
+<div class="card">
+<div class="icon">🏢</div>
+<h3>Pengurus RW</h3>
+<div class="number">1</div>
+</div>
+
+</div>
+
+
+<div class="table-card">
+
+<div class="table-header">
+
+<h2>Daftar Pengguna</h2>
+
+<input
+class="search"
+id="searchInput"
+type="text"
+placeholder="🔍 Cari pengguna..."
+onkeyup="searchUser()">
+
+</div>
+
+
+<table id="userTable">
+
+<thead>
+
+<tr>
+<th>No</th>
+<th>Nama</th>
+<th>Username</th>
+<th>Jabatan / Role</th>
+<th>Wilayah</th>
+<th>Status</th>
+<th>Aksi</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>Administrator</td>
+<td>admin</td>
+<td class="role">Administrator</td>
+<td>Semua</td>
+<td><span class="status active">Aktif</span></td>
+<td>✏️ 🗑️</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Ketua RW</td>
+<td>ketuarw</td>
+<td class="role">Pengurus RW</td>
+<td>RW</td>
+<td><span class="status active">Aktif</span></td>
+<td>✏️ 🗑️</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Pengurus RT 01</td>
+<td>rt01</td>
+<td class="role">Pengurus RT</td>
+<td>RT 01</td>
+<td><span class="status active">Aktif</span></td>
+<td>✏️ 🗑️</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Pengurus RT 02</td>
+<td>rt02</td>
+<td class="role">Pengurus RT</td>
+<td>RT 02</td>
+<td><span class="status active">Aktif</span></td>
+<td>✏️ 🗑️</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+</div>
+
+
+<!-- TAMBAH PENGGUNA -->
+
+<div class="modal" id="userModal">
+
+<div class="modal-box">
+
+<h2>➕ Tambah Pengguna</h2>
+
+<div class="form-group">
+<label>Nama Lengkap</label>
+<input id="nama" type="text" placeholder="Nama lengkap">
+</div>
+
+<div class="form-group">
+<label>Username</label>
+<input id="username" type="text" placeholder="Username">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input id="password" type="password" placeholder="Password">
+</div>
+
+<div class="form-group">
+<label>Jabatan / Role</label>
+
+<select id="role">
+
+<option value="">-- Pilih Role --</option>
+<option>Administrator</option>
+<option>Pengurus RW</option>
+<option>Pengurus RT</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Wilayah</label>
+
+<select id="wilayah">
+
+<option value="">-- Pilih Wilayah --</option>
+<option>Semua</option>
+<option>RW</option>
+<option>RT 01</option>
+<option>RT 02</option>
+<option>RT 03</option>
+<option>RT 04</option>
+
+</select>
+
+</div>
+
+<div class="modal-buttons">
+
+<button class="btn btn-cancel" onclick="closeModal()">
+Batal
+</button>
+
+<button class="btn" onclick="saveUser()">
+Simpan Pengguna
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+function openModal() {
+    document.getElementById("userModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("userModal").style.display = "none";
+}
+
+function saveUser() {
+
+    const nama = document.getElementById("nama").value;
+    const username = document.getElementById("username").value;
+    const role = document.getElementById("role").value;
+    const wilayah = document.getElementById("wilayah").value;
+
+    if (!nama || !username || !role || !wilayah) {
+        alert("Mohon lengkapi data pengguna.");
+        return;
+    }
+
+    alert(
+        "Pengguna " + nama +
+        " berhasil ditambahkan.\n\n" +
+        "Tahap berikutnya akan kita hubungkan dengan sistem login."
+    );
+
+    closeModal();
+}
+
+function searchUser() {
+
+    const input = document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const rows = document
+        .getElementById("userTable")
+        .getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        const text = rows[i]
+            .innerText
+            .toLowerCase();
+
+        rows[i].style.display =
+            text.includes(input) ? "" : "none";
+    }
+}
+
+</script>
+
+</body>
+</html>
